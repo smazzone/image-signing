@@ -81,7 +81,7 @@ validators:
     - name: default
       key: |  # enter your public key below
         -----BEGIN PUBLIC KEY-----
-        MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEqgsiddr7WMll/0hiANjPIWCfdnXUICwI3tY66dvGYKNuHFeEqZAei2+5sL2FcjkaPJRsXpWu5/zWKILzWbpxjQ==
+        ***** COPY YOUR PUBLIC KEY HERE *****
         -----END PUBLIC KEY-----
     #cert: |  # in case the trust data host is using a self-signed certificate
     #  -----BEGIN CERTIFICATE-----

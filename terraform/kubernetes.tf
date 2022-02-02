@@ -30,69 +30,56 @@ provider "kubernetes" {
   cluster_ca_certificate = base64decode(var.cluster_ca_certificate)
 }
 
-
-
-resource "kubernetes_deployment" "nginx" {
+resource "kubernetes_pod" "signed" {
   metadata {
-    name = "scalable-nginx-example"
-    labels = {
-      App = "ScalableNginxExample"
-    }
+    name = "signed"
   }
 
   spec {
-    replicas = 2
-    selector {
-      match_labels = {
-        App = "ScalableNginxExample"
+    container {
+      image = "smazzone/image-demo:signed"
+      name  = "signed"
+
+      port {
+        container_port = 8080
       }
     }
-    template {
-      metadata {
-        labels = {
-          App = "ScalableNginxExample"
-        }
-      }
-      spec {
-        container {
-          image = "nginx:1.7.8"
-          name  = "example"
+  }
+}
 
-          port {
-            container_port = 80
-          }
+resource "kubernetes_pod" "not-signed" {
+  metadata {
+    name = "not-signed"
+    namespace = "validateme"
+  }
 
-          resources {
-            limits = {
-              cpu    = "0.5"
-              memory = "512Mi"
-            }
-            requests = {
-              cpu    = "250m"
-              memory = "50Mi"
-            }
-          }
-        }
+  spec {
+    container {
+      image = "smazzone/image-demo:not-signed"
+      name  = "not-signed"
+
+      port {
+        container_port = 8080
       }
     }
   }
 }
 
 
-resource "kubernetes_service" "nginx" {
+/* resource "kubernetes_pod" "signed-validated" {
   metadata {
-    name = "nginx-example"
+    name = "signed-validated"
+    namespace = "validateme"
   }
-  spec {
-    selector = {
-      App = kubernetes_deployment.nginx.spec.0.template.0.metadata[0].labels.App
-    }
-    port {
-      node_port   = 30201
-      port        = 80
-      target_port = 80
-    }
 
-    type = "NodePort"
+  spec {
+    container {
+      image = "smazzone/image-demo:signed"
+      name  = "signed"
+
+      port {
+        container_port = 8080
+      }
+    }
   }
-}
+} */
