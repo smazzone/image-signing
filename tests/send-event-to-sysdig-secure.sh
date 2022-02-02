@@ -1,5 +1,5 @@
 #!/bin/bash
-SECURE_API_TOKEN='c09cefa5-7bd7-4b87-a430-ccee645a5884'
+SECURE_API_TOKEN='YOUR-SYSDIG-ACCESS-TOKEN'
 ENDPOINT='eu1.app.sysdig.com'
 
 curl --location --request POST 'https://'${ENDPOINT}'/api/v1/eventsDispatch/ingest' \
