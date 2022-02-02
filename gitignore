@@ -11,4 +11,13 @@
 **/.terraform.lock.hcl
 
 *.exclude
+*.*.exclude
+**/*.*.exclude
+
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
 
