@@ -66,20 +66,20 @@ resource "kubernetes_pod" "not-signed" {
 }
 
 
-/* resource "kubernetes_pod" "signed-validated" {
-  metadata {
-    name = "signed-validated"
-    namespace = "validateme"
-  }
+# resource "kubernetes_pod" "signed-validated" {
+#   metadata {
+#     name = "signed-validated"
+#     namespace = "validateme"
+#   }
 
-  spec {
-    container {
-      image = "smazzone/image-demo:signed"
-      name  = "signed"
+#   spec {
+#     container {
+#       image = "smazzone/image-demo:signed"
+#       name  = "signed"
 
-      port {
-        container_port = 8080
-      }
-    }
-  }
-} */
+#       port {
+#         container_port = 8080
+#       }
+#     }
+#   }
+# }
