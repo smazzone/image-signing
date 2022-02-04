@@ -30,15 +30,16 @@ provider "kubernetes" {
   cluster_ca_certificate = base64decode(var.cluster_ca_certificate)
 }
 
-resource "kubernetes_pod" "signed" {
+
+resource "kubernetes_pod" "test" {
   metadata {
-    name = "signed"
+    name = "test"
   }
 
   spec {
     container {
-      image = "smazzone/image-demo:signed"
-      name  = "signed"
+      image = "smazzone/image-demo:test"
+      name  = "test"
 
       port {
         container_port = 8080
@@ -47,16 +48,15 @@ resource "kubernetes_pod" "signed" {
   }
 }
 
-resource "kubernetes_pod" "not-signed" {
+resource "kubernetes_pod" "hello-world" {
   metadata {
-    name = "not-signed"
-    namespace = "validateme"
+    name = "hello-world"
   }
 
   spec {
     container {
-      image = "smazzone/image-demo:not-signed"
-      name  = "not-signed"
+      image = "docker.io/hello-world"
+      name  = "hello-world"
 
       port {
         container_port = 8080
@@ -65,11 +65,23 @@ resource "kubernetes_pod" "not-signed" {
   }
 }
 
-
-# resource "kubernetes_pod" "signed-validated" {
+# resource "kubernetes_namespace" "validateme" {
 #   metadata {
-#     name = "signed-validated"
-#     namespace = "validateme"
+#     annotations = {
+#       name = "validateme namespace"
+#     }
+
+#     labels = {
+#       mylabel = "validateme namespace"
+#     }
+
+#     name = "validateme"
+#   }
+# }
+
+# resource "kubernetes_pod" "signed" {
+#   metadata {
+#     name = "signed"
 #   }
 
 #   spec {
@@ -83,3 +95,23 @@ resource "kubernetes_pod" "not-signed" {
 #     }
 #   }
 # }
+
+# resource "kubernetes_pod" "not-signed" {
+#   metadata {
+#     name = "not-signed"
+#     namespace = "validateme"
+#   }
+
+#   spec {
+#     container {
+#       image = "smazzone/image-demo:not-signed"
+#       name  = "not-signed"
+
+#       port {
+#         container_port = 8080
+#       }
+#     }
+#   }
+# }
+
+
