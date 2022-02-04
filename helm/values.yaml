@@ -211,7 +211,7 @@ alerting:
      - template: sysdig #REQUIRED!
        receiver_url: https://eu1.app.sysdig.com/api/v1/eventsDispatch/ingest #REQUIRED!
        priority: 4 #(defaults to 3)
-       custom_headers: ["Authorization:  Bearer c09cefa5-7bd7-4b87-a430-ccee645a5884","Content-Type:  application/json"]
+       custom_headers: ["Authorization:  Bearer <YOUR-SYSDIG-TOKEN>","Content-Type:  application/json"]
        payload_fields:
          responders:
            - username: "stefano@myowncompany.com"
@@ -230,7 +230,7 @@ alerting:
      - template: sysdig #REQUIRED!
        receiver_url: https://eu1.app.sysdig.com/api/v1/eventsDispatch/ingest #REQUIRED!
        priority: 4 #(defaults to 3)
-       custom_headers: ["Authorization:  Bearer c09cefa5-7bd7-4b87-a430-ccee645a5884","Content-Type:  application/json"]
+       custom_headers: ["Authorization:  Bearer <YOUR-SYSDIG-TOKEN>","Content-Type:  application/json"]
        payload_fields:
          responders:
            - username: "stefano@myowncompany.com"
